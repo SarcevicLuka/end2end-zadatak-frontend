@@ -1,11 +1,12 @@
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import { Button } from "primereact/button";
+import Routes from "./routes/Routes";
 
 function App() {
   return (
-    <>
-      <Button label="Button" />
-    </>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
