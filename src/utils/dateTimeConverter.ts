@@ -1,19 +1,10 @@
-export const convertToLocaleDate = (dateTime: string): string => {
-  const now = new Date();
-  const postDate = new Date(dateTime);
-  const timeDiff = now.getTime() - postDate.getTime() - 7_200_000; // Add two hours
+export const convertToLocaleDate = (date: string): Date => {
+  const dateComponents = date.split(".");
+  const day = parseInt(dateComponents[0], 10);
+  const month = parseInt(dateComponents[1], 10) - 1;
+  const year = parseInt(dateComponents[2], 10);
 
-  const seconds = Math.floor(timeDiff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
+  const dateObject = new Date(year, month, day);
 
-  if (minutes < 1) {
-    return "Now";
-  } else if (hours < 1) {
-    return minutes.toString() + " min";
-  } else if (hours >= 1 && hours < 24) {
-    return hours.toString() + ` ${hours === 1 ? "hour ago" : "hours ago"}`;
-  }
-
-  return postDate.toLocaleDateString();
+  return dateObject;
 };

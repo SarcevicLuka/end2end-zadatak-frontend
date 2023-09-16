@@ -11,7 +11,7 @@ export type Employee = {
   department: string;
   daysOfHoliday: number;
   freeDays: number;
-  daysOfPaid_leave: number;
+  daysOfPaidLeave: number;
   createdAt: string;
   updatedAt: string;
 };

@@ -1,32 +1,33 @@
 import { Dialog } from "primereact/dialog";
 import { Dispatch, SetStateAction } from "react";
-import AddEmployeeForm from "./forms/AddEmployeeForm";
+import EditEmployeeForm from "../forms/EditEmployeeForm";
+import { Employee } from "../grids/types";
 
-interface AddEmployeeDialogProps {
+interface EditEmployeeDialogProps {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
-  setAddedEmployee: Dispatch<SetStateAction<number>>;
+  employeeDetails: Employee;
 }
 
-function AddEmployeeDialog({
+function EditEmployeeDialog({
   visible,
   setVisible,
-  setAddedEmployee,
-}: AddEmployeeDialogProps) {
+  employeeDetails,
+}: EditEmployeeDialogProps) {
   return (
     <Dialog
-      header="Add employee"
+      header="Edit employee"
       position="top"
       visible={visible}
       className="w-11 sm:w-11 md:w-9 lg:w-6"
       onHide={() => setVisible(false)}
     >
-      <AddEmployeeForm
+      <EditEmployeeForm
         setVisible={setVisible}
-        setAddedEmployee={setAddedEmployee}
+        employeeDetails={employeeDetails}
       />
     </Dialog>
   );
 }
 
-export default AddEmployeeDialog;
+export default EditEmployeeDialog;

@@ -7,7 +7,7 @@ interface CustomDividerProps {
 function CustomDivider({ text }: CustomDividerProps) {
   return (
     <Divider align="left">
-      <div className="inline-flex align-items-center">
+      <div className="inline-flex align-items-center text-lg">
         <b>{text}</b>
       </div>
     </Divider>

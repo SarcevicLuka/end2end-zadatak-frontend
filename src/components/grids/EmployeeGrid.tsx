@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAxios } from "../../api/hooks/useAxios";
 import { EmployeeRoutes } from "../../api/endpoints";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Employee } from "./types";
 import EmployeeItem from "./EmployeeItem";
+import { EmployeeChangeContext } from "../../provider/EmployeeChangeProvider";
 
-interface EmployeeGridProps {
-  addedEmployee: number;
-}
-
-function EmployeeGrid({ addedEmployee }: EmployeeGridProps) {
+function EmployeeGrid() {
   const { axiosInstance } = useAxios();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const { employeeChanged } = useContext(EmployeeChangeContext);
 
   const handleFetchAllEmployees = () => {
     setLoading(true);
@@ -36,7 +34,7 @@ function EmployeeGrid({ addedEmployee }: EmployeeGridProps) {
   useEffect(() => {
     handleFetchAllEmployees();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [addedEmployee]);
+  }, [employeeChanged]);
 
   return loading ? (
     <ProgressSpinner />

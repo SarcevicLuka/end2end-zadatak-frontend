@@ -2,12 +2,17 @@ import { Employee } from "./types";
 import { Card } from "primereact/card";
 import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
+import { useState } from "react";
+import { Sidebar } from "primereact/sidebar";
+import EmployeeDetails from "../employeeDetails/EmployeeDetails";
 
 interface EmployeeItemProps {
   employee: Employee;
 }
 
 function EmployeeItem({ employee }: EmployeeItemProps) {
+  const [visible, setVisible] = useState<boolean>(false);
+
   const header = (
     <div className="flex justify-content-center">
       <img className="w-10rem" alt="Card" src={employee.image} />
@@ -22,18 +27,31 @@ function EmployeeItem({ employee }: EmployeeItemProps) {
         icon="pi pi-user"
         className="p-button-outlined"
         size="small"
+        onClick={() => setVisible(true)}
       />
     </div>
   );
 
   return (
-    <Card
-      className="w-17rem col-12 md:col-6 lg:col-3"
-      title={`${employee.firstName} ${employee.lastName}`}
-      header={header}
-      footer={footer}
-      key={employee.id}
-    ></Card>
+    <>
+      <Card
+        className="w-17rem col-12 md:col-6 lg:col-3"
+        title={`${employee.firstName} ${employee.lastName}`}
+        header={header}
+        footer={footer}
+        key={employee.id}
+      />
+
+      <Sidebar
+        visible={visible}
+        onHide={() => setVisible(false)}
+        className="w-full md:w-20rem lg:w-30rem"
+      >
+        <h2>Employee details</h2>
+
+        <EmployeeDetails employee={employee} />
+      </Sidebar>
+    </>
   );
 }
 

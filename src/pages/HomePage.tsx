@@ -2,11 +2,10 @@ import EmployeeGrid from "../components/grids/EmployeeGrid";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
-import AddEmployeeDialog from "../components/AddEmployeeDialog";
+import AddEmployeeDialog from "../components/dialogs/AddEmployeeDialog";
 
 function HomePage() {
   const [visible, setVisible] = useState<boolean>(false);
-  const [addedEmployee, setAddedEmployee] = useState<number>(0);
 
   return (
     <>
@@ -23,13 +22,9 @@ function HomePage() {
       </div>
       <div className="flex flex-column align-items-center mt-5">
         <div className="title text-4xl font-bold">Employees</div>
-        <EmployeeGrid addedEmployee={addedEmployee} />
+        <EmployeeGrid />
       </div>
-      <AddEmployeeDialog
-        visible={visible}
-        setVisible={setVisible}
-        setAddedEmployee={setAddedEmployee}
-      />
+      <AddEmployeeDialog visible={visible} setVisible={setVisible} />
     </>
   );
 }

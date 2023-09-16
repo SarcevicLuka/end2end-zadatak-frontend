@@ -14,28 +14,34 @@ import { EmployeeRoutes } from "../../api/endpoints";
 import { insertable } from "../../utils/modelMappers";
 import { AddEmployeeSchema } from "./schemas";
 import CustomDivider from "../CustomDivider";
+import { Employee } from "../grids/types";
+import { convertToLocaleDate } from "../../utils/dateTimeConverter";
 import { EmployeeChangeContext } from "../../provider/EmployeeChangeProvider";
 
 interface AddEmployeeFormProps {
   setVisible: Dispatch<SetStateAction<boolean>>;
+  employeeDetails: Employee;
 }
 
-const initialValues: EmployeeFormData = {
-  firstName: "",
-  lastName: "",
-  sex: { sex: "" },
-  image: "",
-  birthYear: 2023,
-  startOfWork: new Date(),
-  typeOfContract: { typeOfContract: "" },
-  lengthOfContract: new Date(),
-  department: { department: "" },
-  daysOfHoliday: undefined,
-  freeDays: undefined,
-  daysOfPaidLeave: undefined,
-};
+function EditEmployeeForm({
+  setVisible,
+  employeeDetails,
+}: AddEmployeeFormProps) {
+  const initialValues: EmployeeFormData = {
+    firstName: employeeDetails.firstName,
+    lastName: employeeDetails.lastName,
+    sex: { sex: employeeDetails.sex },
+    image: employeeDetails.image,
+    birthYear: employeeDetails.birthYear,
+    startOfWork: convertToLocaleDate(employeeDetails.startOfWork),
+    typeOfContract: { typeOfContract: employeeDetails.typeOfContract },
+    lengthOfContract: convertToLocaleDate(employeeDetails.lengthOfContract),
+    department: { department: employeeDetails.department },
+    daysOfHoliday: employeeDetails.daysOfHoliday,
+    freeDays: employeeDetails.freeDays,
+    daysOfPaidLeave: employeeDetails.daysOfPaidLeave,
+  };
 
-function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
   const { axiosInstance } = useAxios();
   const [imageError, setImageError] = useState<string>("");
   const { employeeChanged } = useContext(EmployeeChangeContext);
@@ -57,9 +63,10 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
   ) => {
     const data = insertable(values);
     axiosInstance
-      .post(EmployeeRoutes.ADD_EMPLOYEE, data)
+      .post(EmployeeRoutes.EDIT_EMPLOYEE(employeeDetails.id), data)
       .then((response) => {
         console.log(response.data);
+        if (employeeChanged) employeeChanged();
       })
       .catch((error) => {
         console.error(error);
@@ -67,7 +74,6 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
       .finally(() => {
         actions.setSubmitting(false);
         setVisible(false);
-        if (employeeChanged) employeeChanged();
       });
   };
 
@@ -120,6 +126,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
           </div>
           <div className="flex gap-1">
             <div className="flex flex-column flex-1">
+              <label htmlFor="firstName">First name</label>
               <InputText
                 id="firstName"
                 name="firstName"
@@ -133,6 +140,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               {checkErrors(errors, touched, "firstName")}
             </div>
             <div className="flex flex-column flex-1">
+              <label htmlFor="lastName">Last name</label>
               <InputText
                 id="lastName"
                 name="lastName"
@@ -148,6 +156,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
           </div>
           <div className="flex mt-4 gap-1">
             <div className="flex flex-column flex-1">
+              <label htmlFor="sex">Sex</label>
               <Dropdown
                 inputId="sex"
                 name="sex"
@@ -163,6 +172,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               {checkErrors(errors, touched, "sex")}
             </div>
             <div className="flex flex-column flex-1">
+              <label htmlFor="birthYear">Birth year</label>
               <InputNumber
                 id="birthYear"
                 name="birthYear"
@@ -182,6 +192,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
 
           <div className="flex mt-4 gap-1">
             <div className="flex flex-column flex-1">
+              <label htmlFor="department">Department</label>
               <Dropdown
                 inputId="department"
                 name="department"
@@ -197,6 +208,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               {checkErrors(errors, touched, "department")}
             </div>
             <div className="flex flex-column flex-1">
+              <label htmlFor="startOfwork">Start of work</label>
               <Calendar
                 inputId="startOfWork"
                 name="startOfWork"
@@ -212,6 +224,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
           </div>
           <div className="flex mt-4 gap-1">
             <div className="flex flex-column flex-1">
+              <label htmlFor="typeOfContract">Type of contract</label>
               <Dropdown
                 inputId="typeOfContract"
                 name="typeOfContract"
@@ -227,6 +240,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               {checkErrors(errors, touched, "typeOfContract")}
             </div>
             <div className="flex flex-column flex-1">
+              <label htmlFor="lengthOfContract">End of contract</label>
               <Calendar
                 inputId="lengthOfContract"
                 name="lengthOfContract"
@@ -244,7 +258,8 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
 
           <CustomDivider text="Optional" />
 
-          <div className="flex">
+          <div className="flex flex-column w-12 sm:w-12 md:w-6">
+            <label htmlFor="daysOfPaidLeave">Days of paid leave</label>
             <InputNumber
               inputId="daysOfPaidLeave"
               name="daysOfPaidLeave"
@@ -258,6 +273,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               })}
             />
             {checkErrors(errors, touched, "daysOfPaidLeave")}
+            <label htmlFor="daysOfHoliday">Days of holiday</label>
             <InputNumber
               inputId="daysOfHoliday"
               name="daysOfHoliday"
@@ -271,6 +287,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               })}
             />
             {checkErrors(errors, touched, "daysOfHoliday")}
+            <label htmlFor="freeDays">Free days</label>
             <InputNumber
               inputId="freeDays"
               name="freeDays"
@@ -289,7 +306,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
           <Button
             className="mt-4 gap-1"
             type="submit"
-            label="Add employee"
+            label="Edit employee"
             disabled={isSubmitting}
             loading={isSubmitting}
           />
@@ -299,4 +316,4 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
   );
 }
 
-export default AddEmployeeForm;
+export default EditEmployeeForm;
