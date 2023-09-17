@@ -19,7 +19,7 @@ function EditEmployeeDialog({
       header="Edit employee"
       position="top"
       visible={visible}
-      className="w-11 sm:w-11 md:w-9 lg:w-6"
+      className="w-11 sm:w-11 md:w-10 lg:w-8"
       onHide={() => setVisible(false)}
     >
       <EditEmployeeForm

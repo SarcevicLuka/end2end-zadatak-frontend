@@ -13,7 +13,7 @@ function AddEmployeeDialog({ visible, setVisible }: AddEmployeeDialogProps) {
       header="Add employee"
       position="top"
       visible={visible}
-      className="w-11 sm:w-11 md:w-9 lg:w-6 scroll-container"
+      className="w-11 sm:w-11 md:w-10 lg:w-8 scroll-container"
       onHide={() => setVisible(false)}
     >
       <AddEmployeeForm setVisible={setVisible} />

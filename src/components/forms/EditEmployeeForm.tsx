@@ -124,7 +124,7 @@ function EditEmployeeForm({
               <small className="p-error mt-2 gap-1">&nbsp;</small>
             )}
           </div>
-          <div className="flex gap-1">
+          <div className="flex flex-column sm:flex-row gap-1">
             <div className="flex flex-column flex-1">
               <label htmlFor="firstName">First name</label>
               <InputText
@@ -154,7 +154,7 @@ function EditEmployeeForm({
               {checkErrors(errors, touched, "lastName")}
             </div>
           </div>
-          <div className="flex mt-4 gap-1">
+          <div className="flex flex-column sm:flex-row mt-4 gap-1">
             <div className="flex flex-column flex-1">
               <label htmlFor="sex">Sex</label>
               <Dropdown
@@ -190,7 +190,7 @@ function EditEmployeeForm({
 
           <CustomDivider text="Contract info" />
 
-          <div className="flex mt-4 gap-1">
+          <div className="flex flex-column sm:flex-row mt-4 gap-1">
             <div className="flex flex-column flex-1">
               <label htmlFor="department">Department</label>
               <Dropdown
@@ -222,7 +222,7 @@ function EditEmployeeForm({
               {checkErrors(errors, touched, "startOfWork")}
             </div>
           </div>
-          <div className="flex mt-4 gap-1">
+          <div className="flex flex-column sm:flex-row mt-4 gap-1">
             <div className="flex flex-column flex-1">
               <label htmlFor="typeOfContract">Type of contract</label>
               <Dropdown

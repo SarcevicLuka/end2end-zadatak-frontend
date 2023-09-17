@@ -118,7 +118,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               <small className="p-error mt-2 gap-1">&nbsp;</small>
             )}
           </div>
-          <div className="flex gap-1">
+          <div className="flex flex-column sm:flex-row gap-1">
             <div className="flex flex-column flex-1">
               <InputText
                 id="firstName"
@@ -146,7 +146,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               {checkErrors(errors, touched, "lastName")}
             </div>
           </div>
-          <div className="flex mt-4 gap-1">
+          <div className="flex flex-column sm:flex-row mt-4 gap-1">
             <div className="flex flex-column flex-1">
               <Dropdown
                 inputId="sex"
@@ -180,7 +180,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
 
           <CustomDivider text="Contract info" />
 
-          <div className="flex mt-4 gap-1">
+          <div className="flex flex-column sm:flex-row mt-4 gap-1">
             <div className="flex flex-column flex-1">
               <Dropdown
                 inputId="department"
@@ -210,7 +210,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               {checkErrors(errors, touched, "startOfWork")}
             </div>
           </div>
-          <div className="flex mt-4 gap-1">
+          <div className="flex flex-column sm:flex-row mt-4 gap-1">
             <div className="flex flex-column flex-1">
               <Dropdown
                 inputId="typeOfContract"
@@ -244,7 +244,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
 
           <CustomDivider text="Optional" />
 
-          <div className="flex">
+          <div className="flex flex-column sm:flex-row">
             <InputNumber
               inputId="daysOfPaidLeave"
               name="daysOfPaidLeave"
