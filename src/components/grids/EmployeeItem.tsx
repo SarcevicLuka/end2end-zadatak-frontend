@@ -35,7 +35,7 @@ function EmployeeItem({ employee }: EmployeeItemProps) {
   return (
     <>
       <Card
-        className="w-17rem col-12 md:col-6 lg:col-3"
+        className="employee-card hover:bg-indigo-100"
         title={`${employee.firstName} ${employee.lastName}`}
         header={header}
         footer={footer}

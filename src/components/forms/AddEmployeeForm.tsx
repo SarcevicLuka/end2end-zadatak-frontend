@@ -154,7 +154,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
                 value={values.sex}
                 options={sexes}
                 optionLabel="sex"
-                placeholder="Select a Sex"
+                placeholder="Sex"
                 className={classNames({
                   "p-invalid": errors.sex && touched.sex,
                 })}
@@ -188,7 +188,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
                 value={values.department}
                 options={departments}
                 optionLabel="department"
-                placeholder="Select a Department"
+                placeholder="Department"
                 className={classNames({
                   "p-invalid": errors.department && touched.department,
                 })}
@@ -218,7 +218,7 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
                 value={values.typeOfContract}
                 options={typesOfContract}
                 optionLabel="typeOfContract"
-                placeholder="Select a type of contract"
+                placeholder="Type of contract"
                 className={classNames({
                   "p-invalid": errors.typeOfContract && touched.typeOfContract,
                 })}

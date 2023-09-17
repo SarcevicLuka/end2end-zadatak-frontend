@@ -7,11 +7,14 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import EmployeeChangeProvider from "./provider/EmployeeChangeProvider.tsx";
+import SearchProvider from "./provider/SearchProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   //<React.StrictMode>
   <EmployeeChangeProvider>
-    <App />
+    <SearchProvider>
+      <App />
+    </SearchProvider>
   </EmployeeChangeProvider>
   //</React.StrictMode>
 );
