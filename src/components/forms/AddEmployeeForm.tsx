@@ -151,16 +151,16 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               <Dropdown
                 inputId="sex"
                 name="sex"
-                value={values.sex}
+                value={values.sex.sex}
                 options={sexes}
                 optionLabel="sex"
                 placeholder="Sex"
                 className={classNames({
-                  "p-invalid": errors.sex && touched.sex,
+                  "p-invalid": errors.sex?.sex && touched.sex?.sex,
                 })}
                 onChange={handleChange}
               />
-              {checkErrors(errors, touched, "sex")}
+              {checkErrors(errors, touched, "sex.sex")}
             </div>
             <div className="flex flex-column flex-1">
               <InputNumber
@@ -185,16 +185,18 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               <Dropdown
                 inputId="department"
                 name="department"
-                value={values.department}
+                value={values.department.department}
                 options={departments}
                 optionLabel="department"
                 placeholder="Department"
                 className={classNames({
-                  "p-invalid": errors.department && touched.department,
+                  "p-invalid":
+                    errors.department?.department &&
+                    touched.department?.department,
                 })}
                 onChange={handleChange}
               />
-              {checkErrors(errors, touched, "department")}
+              {checkErrors(errors, touched, "department.department")}
             </div>
             <div className="flex flex-column flex-1">
               <Calendar
@@ -215,16 +217,18 @@ function AddEmployeeForm({ setVisible }: AddEmployeeFormProps) {
               <Dropdown
                 inputId="typeOfContract"
                 name="typeOfContract"
-                value={values.typeOfContract}
+                value={values.typeOfContract.typeOfContract}
                 options={typesOfContract}
                 optionLabel="typeOfContract"
                 placeholder="Type of contract"
                 className={classNames({
-                  "p-invalid": errors.typeOfContract && touched.typeOfContract,
+                  "p-invalid":
+                    errors.typeOfContract?.typeOfContract &&
+                    touched.typeOfContract?.typeOfContract,
                 })}
                 onChange={handleChange}
               />
-              {checkErrors(errors, touched, "typeOfContract")}
+              {checkErrors(errors, touched, "typeOfContract.typeOfContract")}
             </div>
             <div className="flex flex-column flex-1">
               <Calendar

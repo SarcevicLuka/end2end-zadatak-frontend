@@ -9,10 +9,16 @@ export const AddEmployeeSchema = Yup.object().shape({
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  sex: Yup.object().required("Required"),
+  sex: Yup.object().shape({
+    sex: Yup.string().required("Required"),
+  }),
   birthYear: Yup.number().required("Required"),
   startOfWork: Yup.string().required("Required"),
-  typeOfContract: Yup.object().required("Required"),
+  typeOfContract: Yup.object().shape({
+    typeOfContract: Yup.string().required("Required"),
+  }),
   lengthOfContract: Yup.string().required("Required"),
-  department: Yup.object().required("Required"),
+  department: Yup.object().shape({
+    department: Yup.string().required("Required"),
+  }),
 });
